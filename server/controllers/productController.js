@@ -33,6 +33,33 @@ export const getAllProduct=async(req,res)=>{
      res.status(200).send(productlist)
 }
 
+export const getProduct=async(req,res)=>{
+    try {
+      const product=await Products.findById(req.params.id)
+      res.status(200).send(product)
+    } catch (error) {
+     console.log(error)
+    }
+ }
+
+ export const getLimitedProducts=async(req,res)=>{
+    const page=req.query.page;
+    const limit=req.query.limit;
+    try {
+        const products=await Products.find().skip((page-1)*limit).limit(limit).exec();
+        res.status(200).json({products})
+    } catch (error) {
+        console.log(error)
+    }
+ }
+export const getAllProductCount=async(req,res)=>{
+    try {
+        const count=await Products.countDocuments()
+        res.status(200).json({count:count})
+    } catch (error) {
+        console.log(error)
+    }
+}
 export const deleteAllProducts=async(req,res)=>{
     try {
         await Products.deleteMany();
@@ -43,11 +70,3 @@ export const deleteAllProducts=async(req,res)=>{
     
 }
 
-export const getProduct=async(req,res)=>{
-   try {
-     const product=await Products.findById(req.params.id)
-     res.status(200).send(product)
-   } catch (error) {
-    console.log(error)
-   }
-}
