@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from "react";
-import { useLocation, useParams,useNavigate} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Auth.css";
 const Auth = () => {
@@ -8,7 +8,7 @@ const Auth = () => {
   const [passwrodStyle, setPasswordStyle] = useState({});
   const [wrongPassword, setWrongPassword] = useState(false);
   const location = useLocation();
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const type = queryParams.get("type");
@@ -42,7 +42,7 @@ const Auth = () => {
         "http://localhost:5000/api/auth/signup",
         userDetails
       );
-      navigate('/auth?type=login')
+      navigate("/auth?type=login");
     } else {
       const loginUser = await axios.post(
         "http://localhost:5000/api/auth/login",
@@ -50,13 +50,15 @@ const Auth = () => {
       );
       if (loginUser)
         sessionStorage.setItem("authuser", JSON.stringify(loginUser.data));
-      navigate('/home')
+      navigate("/home");
     }
   };
   return (
     <div className="auth-container">
+      <img src="/images/pexels-pixabay-301692.jpg" alt="food-background" />
       <div className="auth-wrapper">
         <form onSubmit={handleSubmit}>
+          <h2>{isSignUp ? "SignUp" : "Login"}</h2>
           <input
             type="text"
             name="username"
@@ -101,8 +103,8 @@ const Auth = () => {
             onClick={() => setisSignUp((prev) => !prev)}
           >
             {isSignUp
-              ? "already have an account,Login"
-              : "don't have an account, signUp"}
+              ? "already have an account?,Login"
+              : "don't have an account?, signUp"}
           </span>
           {wrongPassword && (
             <span style={{ color: "red" }}>*wrong pasword</span>

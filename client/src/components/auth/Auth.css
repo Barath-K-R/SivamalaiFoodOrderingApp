@@ -1,28 +1,44 @@
+.auth-container{
+    position: relative;
+}
+.auth-container>img{
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   opacity: 0.3;
+}
 .auth-wrapper{
-    background-color: antiquewhite;
-    height: 80vh;
+    background-color: rgb(60, 58, 56);
+    height: 100vh;
     display: flex;
     justify-content: center;
+    
 }
 .auth-wrapper>form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
+    color: white;
+    z-index: 1;
 }
 
 .auth-wrapper input{
     width: 250px;
     height:30px;
-    border: 2px solid black ;
-    border-radius: 10px ;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    outline: none;
 }
 
 .auth-wrapper button{
     width:80px;
     height: 30px;
-    background-color: rgb(252, 177, 0);
+    background-color: rgb(233, 176, 43);
     border-radius: 10px;
     cursor: pointer;
 }
